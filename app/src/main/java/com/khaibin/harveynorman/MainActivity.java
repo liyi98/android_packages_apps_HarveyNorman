@@ -6,8 +6,10 @@ import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    boolean canExit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +25,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         WebView browser = (WebView) findViewById(R.id.webview);
+
         if(event.getAction() == KeyEvent.ACTION_DOWN){
             switch(keyCode)
             {
                 case KeyEvent.KEYCODE_BACK:
                     if(browser.canGoBack()){
+                        canExit = false;
                         browser.goBack();
                     }else{
-                        finish();
+                        if(canExit) {
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+                            canExit = true;
+                        }
                     }
                     return true;
             }
