@@ -39,6 +39,15 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
                             canExit = true;
+                            new java.util.Timer().schedule(
+                                    new java.util.TimerTask() {
+                                        @Override
+                                        public void run() {
+                                            canExit = false;
+                                        }
+                                    },
+                                    2000
+                            );
                         }
                     }
                     return true;
