@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_webview);
-        final WebView browser = (WebView) findViewById(R.id.webview);
+        WebView browser = (WebView) findViewById(R.id.webview);
         final ProgressBar progressloader = (ProgressBar) findViewById(R.id.progress_loader);
         browser.setWebViewClient(new WebViewClient() {
             @Override
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                                             canExit = false;
                                         }
                                     },
-                                    2000
+                                    1500
                             );
                         }
                     }
